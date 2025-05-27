@@ -2,21 +2,22 @@ public class Main {
     public static void main(String[] args) {
         TaskManager manager = new TaskManager();
 
-        manager.createTask(new Task(manager.getCounterId(), "Task1", "DescriptionOne"));
-        manager.createTask(new Task(manager.getCounterId(), "Task2", "DescriptionTwo"));
+        manager.createTask(new Task("Task1", "DescriptionOne"));
+        manager.createTask(new Task("Task2", "DescriptionTwo"));
 
-        Epic epic1 = new Epic(manager.getCounterId(), "Epic1", "EpicDescriptionOne");
-        Subtask subtask1 = new Subtask(manager.getCounterId(), "Subtask1", "SubtaskDescriptionOne", epic1.getId());
-        Subtask subtask2 = new Subtask(manager.getCounterId(), "Subtask2", "SubtaskDescriptionTwo", epic1.getId());
-
+        Epic epic1 = new Epic("Epic1", "EpicDescriptionOne");
         manager.createEpic(epic1);
+
+        Subtask subtask1 = new Subtask("Subtask1", "SubtaskDescriptionOne", epic1.getId());
+        Subtask subtask2 = new Subtask("Subtask2", "SubtaskDescriptionTwo", epic1.getId());
+
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);
 
-        Epic epic2 = new Epic(manager.getCounterId(), "Epic2", "EpicDescriptionTwo");
-        Subtask subtask3 = new Subtask(manager.getCounterId(), "Subtask3", "SubtaskDescriptionThree", epic2.getId());
-
+        Epic epic2 = new Epic("Epic2", "EpicDescriptionTwo");
         manager.createEpic(epic2);
+
+        Subtask subtask3 = new Subtask("Subtask3", "SubtaskDescriptionThree", epic2.getId());
         manager.createSubtask(subtask3);
 
         manager.printAllTasks();
@@ -32,7 +33,9 @@ public class Main {
 
         System.out.println("\nREMOVE TASKS AND EPIC\n");
         manager.removeAllTasks();
-        manager.deleteById(subtask1.getIdEpic());
+        manager.deleteSubtaskById(subtask1.getId());
+        // manager.getEpics().get(epic1.getSubtasks().remove(subtask1.getId()));
+
 
         manager.printAllTasks();
     }

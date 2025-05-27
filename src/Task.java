@@ -1,19 +1,35 @@
 public class Task {
     protected String title;
     protected String description;
-    protected final int id;
+    protected int id;
     protected TypeStatus status;
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        if (title != null && !title.isEmpty()) {
+            this.title = title;
+        }
+    }
+
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        if (description != null && !description.isEmpty()) {
+            this.description = description;
+        }
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public TypeStatus getStatus() {
@@ -24,8 +40,8 @@ public class Task {
         this.status = status;
     }
 
-    public Task(int id, String title, String description) {
-        this.id = id;
+
+    public Task(String title, String description) {
         this.title = title;
         this.description = description;
         this.status = TypeStatus.NEW;
@@ -36,12 +52,5 @@ public class Task {
         return "Название: " + title +
                 "\nОписание: " + description +
                 "\nСтатус: " + status;
-    }
-
-    public Task update(Task task) {
-        this.title = task.getTitle();
-        this.status = task.getStatus();
-        this.description = task.getDescription();
-        return this;
     }
 }
