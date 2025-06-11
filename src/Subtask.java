@@ -10,4 +10,11 @@ public class Subtask extends Task {
         return idEpic;
     }
 
+    @Override
+    public void setId(int id) {
+        if (id != this.idEpic) {
+            super.setId(id);
+        }
+    }
+
 }
