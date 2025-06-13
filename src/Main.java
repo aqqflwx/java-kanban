@@ -1,3 +1,9 @@
+import util.Managers;
+import manager.TaskManager;
+import model.Task;
+import model.Epic;
+import model.Subtask;
+
 public class Main {
     public static void main(String[] args) {
         TaskManager manager = Managers.getDefault();
@@ -17,15 +23,12 @@ public class Main {
         Subtask sub3 = new Subtask("Сабтаск3", "Сабтаск Эпик2", epic2.getId());
         manager.createSubtask(sub3);
 
-        System.out.println("> Просмотр Task id = 1");
         manager.getByIdTask(1);
         printHistory(manager);
 
-        System.out.println("> Просмотр Epic id = " + epic1.getId());
         manager.getByIdEpic(epic1.getId());
         printHistory(manager);
 
-        System.out.println("> Просмотр Subtask id = " + sub3.getId());
         manager.getByIdSubtask(sub3.getId());
         printHistory(manager);
 
@@ -34,7 +37,7 @@ public class Main {
     }
 
     private static void printHistory(TaskManager manager) {
-        System.out.println("История просмотров: ");
+        System.out.println("История просмотров:");
         for (Task t : manager.getHistory()) {
             System.out.println("  " + t);
         }

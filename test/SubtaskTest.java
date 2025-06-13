@@ -1,3 +1,4 @@
+import model.Subtask;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +18,6 @@ public class SubtaskTest {
         Subtask sub = new Subtask("Сабтаск", "Описание", 999);
         sub.setId(999);
         assertNotEquals(sub.getIdEpic(), sub.getId(),
-                "Subtask не должен быть своим же эпиком");
+                "model.Subtask не должен быть своим же эпиком");
     }
 }

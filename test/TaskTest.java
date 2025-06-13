@@ -1,3 +1,4 @@
+import model.Task;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +10,7 @@ public class TaskTest {
         t1.setId(3);
         t2.setId(3);
 
-        assertEquals(t1, t2, "Два Task с одинаковым id должны быть равны");
+        assertEquals(t1, t2, "Два model.Task с одинаковым id должны быть равны");
         assertEquals(t1.hashCode(), t2.hashCode(), "hashCode тоже должны совпадать");
     }
 

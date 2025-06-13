@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Objects;
 
 public class Task {
@@ -6,8 +8,15 @@ public class Task {
     protected int id;
     protected TypeStatus status;
 
+    public Task(String title, String description) {
+        this.title = title;
+        this.description = description;
+        this.status = TypeStatus.NEW;
+    }
+
     public String getTitle() {
         return title;
+
     }
 
     public void setTitle(String title) {
@@ -42,13 +51,6 @@ public class Task {
         this.status = status;
     }
 
-
-    public Task(String title, String description) {
-        this.title = title;
-        this.description = description;
-        this.status = TypeStatus.NEW;
-    }
-
     @Override
     public String toString() {
         return "Название: " + title +
@@ -58,12 +60,8 @@ public class Task {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return id == task.id;
     }

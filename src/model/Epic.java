@@ -1,15 +1,18 @@
+package model;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Epic extends Task {
 
-    private ArrayList<Integer> subtasks;
+    private List<Integer> subtasks;
 
     public Epic(String title, String description) {
         super(title, description);
         this.subtasks = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getSubtasks() {
+    public List<Integer> getSubtasks() {
         return subtasks;
     }
 
@@ -21,10 +24,10 @@ public class Epic extends Task {
 
     @Override
     public void setStatus(TypeStatus status) {
-        System.out.println("Смена статуса эпика напрямую запрещена");
+        super.setStatus(status);
     }
 
-    public void setSubtasks(ArrayList<Integer> subtasks) {
+    public void setSubtasks(List<Integer> subtasks) {
         this.subtasks = subtasks;
     }
 }

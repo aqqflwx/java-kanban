@@ -1,5 +1,8 @@
+package model;
+
 public class Subtask extends Task {
-    private int idEpic;
+
+    private final int idEpic;
 
     public Subtask(String title, String description, int idEpic) {
         super(title, description);
@@ -16,5 +19,4 @@ public class Subtask extends Task {
             super.setId(id);
         }
     }
-
 }
