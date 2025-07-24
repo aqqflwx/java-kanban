@@ -3,6 +3,9 @@ import model.Task;
 import model.TypeStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InMemoryTaskManagerTest {
@@ -15,7 +18,7 @@ public class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void createAndGetTask() {
+    public void createAndGetTaskAddsToHistory() {
         Task t = new Task("Таск1", "Описание1");
         manager.createTask(t);
         int id = t.getId();
@@ -23,6 +26,10 @@ public class InMemoryTaskManagerTest {
         Task found = manager.getByIdTask(id);
         assertNotNull(found);
         assertEquals("Таск1", found.getTitle());
+
+        List<Task> hist = manager.getHistory();
+        assertEquals(1, hist.size());
+        assertEquals(id, hist.getFirst().getId());
     }
 
     @Test
@@ -42,5 +49,18 @@ public class InMemoryTaskManagerTest {
         assertEquals("Таск", stored.getTitle());
         assertEquals("Описание", stored.getDescription());
         assertEquals(TypeStatus.NEW, stored.getStatus());
+    }
+
+    @Test
+    public void deleteTaskByIdRemovesFromHistory() {
+        Task t = new Task("Таск", "Описание");
+        manager.createTask(t);
+        int id = t.getId();
+
+        manager.getByIdTask(id);
+        assertFalse(manager.getHistory().isEmpty());
+
+        manager.deleteTaskById(id);
+        assertTrue(manager.getHistory().isEmpty(), "После удаления таска он должен исчезнуть из истории");
     }
 }
